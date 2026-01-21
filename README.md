@@ -165,3 +165,58 @@ This document provides a detailed specification for the Study Room Reservation S
 `DELETE /api/rooms/:roomNumber`
 - **Access**: Admin Only
 - **Success (204)**: No Content.
+
+
+
+
+========================================
+
+Study Room Reservation System – Entity Relationship Diagram (ERD)
+
+This section presents the Entity Relationship Diagram (ERD) for the Study Room Reservation System.
+The ERD illustrates the logical structure of the database by defining the core entities, their attributes, and the relationships between them.
+Schema Details & Constraints
+Users Table
+
+Purpose:
+Stores authentication and authorization information for all system users, including students and administrators.
+
+Constraints:
+
+id: Primary key used as the unique identifier for each user.
+
+username: Must be unique and not null to ensure unambiguous user identification.
+
+password: Mandatory attribute required for authentication.
+
+role: Restricted to predefined values (e.g., student, admin) through application logic or a database-level CHECK constraint.
+Rooms Table
+
+Purpose:
+Maintains a registry of all available study rooms that can be reserved.
+
+Constraints:
+
+room_number: Serves as the primary key and uniquely identifies each room.
+
+created_at: Automatically records the timestamp when a room entry is created.
+Reservations Table
+
+Purpose:
+Records reservation transactions linking users to rooms on specific dates.
+
+Relationships:
+
+Many-to-One with User:
+Each reservation is associated with exactly one user, while a user may have multiple reservations.
+
+Many-to-One with Room:
+Each reservation refers to exactly one room, while a room may appear in multiple reservations.
+
+Proposed Integrity Constraints:
+
+Foreign Key (room_number) REFERENCES Rooms(room_number):
+Ensures that reservations can only be created for existing rooms.
+
+UNIQUE (room_number, reservation_date):
+Prevents multiple reservations for the same room on the same date at the database level.
