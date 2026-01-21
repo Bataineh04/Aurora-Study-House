@@ -1,7 +1,7 @@
 import express from "express"
-import { registerRoutes } from "../dist/server/routes.js"
+import { registerRoutes } from "../server/routes.js"
 import { createServer } from "http"
-import { initializeDatabase } from "../dist/server/db.js"
+import { initializeDatabase } from "../server/db.js"
 
 const app = express()
 const httpServer = createServer(app)
