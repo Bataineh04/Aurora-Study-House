@@ -4,8 +4,7 @@ import { usersTable, reservationsTable, roomsTable } from "../shared/schema.js"
 const { Pool } = pg
 
 export const pool = new Pool({
-  connectionString:
-    "postgresql://neondb_owner:npg_UFhBeTM6EOf2@ep-dark-band-ag6ntssw-pooler.c-2.eu-central-1.aws.neon.tech/test?sslmode=require&channel_binding=require",
+  connectionString: process.env.DATABASE_URL,
 })
 
 export async function initializeDatabase() {
